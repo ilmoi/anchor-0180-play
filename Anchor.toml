@@ -1,5 +1,6 @@
 [programs.localnet]
 anchor_play_3 = "BPvPwaQK28fsMHNJLf4i9jcsaA258tXGzrEaNQWRVJE5"
+puppet = "Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS"
 
 [registry]
 url = "https://anchor.projectserum.com"
