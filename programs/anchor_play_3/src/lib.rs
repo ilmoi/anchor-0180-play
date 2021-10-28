@@ -32,6 +32,10 @@ pub mod anchor_play_3 {
         let cpi_ctx = CpiContext::new(cpi_program, cpi_accounts);
         puppet::cpi::set_data(cpi_ctx, data)
     }
+
+    pub fn me_errors(_ctx: Context<MeErrors>) -> ProgramResult {
+        Err(ErrorCode::Ohno.into())
+    }
 }
 
 // ============================================================================= instructions
@@ -59,6 +63,9 @@ pub struct PullStrings<'info> {
     pub puppet_program: Program<'info, Puppet>,
 }
 
+#[derive(Accounts)]
+pub struct MeErrors {}
+
 // ============================================================================= accounts
 
 #[account]
@@ -67,3 +74,9 @@ pub struct DataHolder {
     pub auth: Pubkey,
 }
 
+// ============================================================================= errors
+#[error]
+pub enum ErrorCode {
+    #[msg("This is a bad error msg!")]
+    Ohno
+}
