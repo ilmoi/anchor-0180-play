@@ -3,7 +3,7 @@ use puppet::cpi::accounts::SetData;
 use puppet::program::Puppet;
 use puppet::{self, Data};
 
-declare_id!("BPvPwaQK28fsMHNJLf4i9jcsaA258tXGzrEaNQWRVJE5");
+declare_id!("Hco3hY3A7LdPya3xFyRXrh9eEUFSJVoh2CbxN9UqLJMH");
 
 // ============================================================================= logic
 
@@ -13,14 +13,24 @@ pub mod anchor_play_3 {
 
     pub fn initialize(ctx: Context<Initialize>, data: u64, authority: Pubkey) -> ProgramResult {
         let data_holder = &mut ctx.accounts.passed_data_holder_acc;
+        let old_data = data_holder.data;
         data_holder.auth = authority;
         data_holder.data = data;
+        emit!(DataUpdated {
+            old_data,
+            new_data: data,
+        });
         Ok(())
     }
 
     pub fn update(ctx: Context<Update>, data: u64) -> ProgramResult {
         let data_holder = &mut ctx.accounts.passed_data_holder_acc;
+        let old_data = data_holder.data;
         data_holder.data = data;
+        emit!(DataUpdated {
+            old_data,
+            new_data: data,
+        });
         Ok(())
     }
 
@@ -75,8 +85,17 @@ pub struct DataHolder {
 }
 
 // ============================================================================= errors
+
 #[error]
 pub enum ErrorCode {
     #[msg("This is a bad error msg!")]
     Ohno
+}
+
+// ============================================================================= events
+
+#[event]
+pub struct DataUpdated {
+    old_data: u64,
+    new_data: u64
 }

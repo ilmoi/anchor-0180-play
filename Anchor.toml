@@ -1,6 +1,6 @@
 [programs.localnet]
-anchor_play_3 = "BPvPwaQK28fsMHNJLf4i9jcsaA258tXGzrEaNQWRVJE5"
-puppet = "Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS"
+anchor_play_3 = "Hco3hY3A7LdPya3xFyRXrh9eEUFSJVoh2CbxN9UqLJMH"
+puppet = "EJMwUAwquyWPgHcbBRQNZ7Hw7FrJXcb4Hw9iSYoD49ea"
 
 [registry]
 url = "https://anchor.projectserum.com"
